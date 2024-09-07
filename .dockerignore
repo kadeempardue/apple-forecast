@@ -1,0 +1,12 @@
+Dockerfile
+docker-compose.yml
+.dockerignore
+.gitignore
+.git
+.bundle
+dist
+tmp
+vendor/cache
+vendor/bundle
+log
+doc

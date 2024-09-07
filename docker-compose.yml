@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: af_postgres
+    image: postgres
+    restart: always
+    shm_size: 128mb # set shared memory limit
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+  adminer:
+    container_name: af_dbadmin
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
