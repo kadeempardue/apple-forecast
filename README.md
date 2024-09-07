@@ -57,10 +57,22 @@ bundle exec rake db:seed:danger
 docker compose up
 ```
 
+Note: Your database will be destroyed anytime you run docker compose down.
+
 [Terminal Tab 2] Start Application
 ```bash
 rails s
 ```
+
+[Browser Tab 1] Application: `http://localhost:3000`
+
+[Browser Tab 2] Database Management: `http://localhost:8080`
+
+System: `PostgreSQL`
+Server: `postgres`
+Username: `postgres`
+Password: `postgres`
+Database: `appleforecast_development` or `appleforecast_test`
 
 ## Contributing
 

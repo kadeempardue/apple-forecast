@@ -1,3 +1,6 @@
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
+
+AppleForecast::Application.routes.draw do
+  mount AfRestApi::Engine => '/api', as: :af_rest_api
+  mount AfFrontend::Engine => '/', as: :af_frontend
 end

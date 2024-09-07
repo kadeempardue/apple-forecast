@@ -12,6 +12,7 @@ gem 'dotenv'
 gem 'draper'
 gem 'inherited_resources'
 gem 'jquery-rails'
+gem 'geocoder'
 gem 'lograge'
 gem 'nested_form'
 gem 'nokogiri'
@@ -32,6 +33,8 @@ gem 'webpacker'
 
 # silence warning: loaded from the standard library, but will no longer be part of the default gems starting from Ruby 3.4.0
 gem 'base64'
+gem 'drb'
+gem 'fiddle'
 gem 'mutex_m'
 
 group :development, :test do

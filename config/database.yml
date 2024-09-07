@@ -7,12 +7,12 @@ default: &default
 
 development:
   <<: *default
-  database: af_development
+  database: appleforecast_development
   user: postgres
   password: postgres
 
 test:
   <<: *default
-  database: af_test
+  database: appleforecast_test
   user: postgres
   password: postgres

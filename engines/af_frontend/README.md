@@ -1,0 +1,3 @@
+# AppleForecast Frontend
+
+Frontend application
