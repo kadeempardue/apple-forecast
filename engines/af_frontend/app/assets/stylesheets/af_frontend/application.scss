@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+// Load Bulma's base styles and themes (including the minireset)
+
+// Bulma Utilities
+@forward "sass/utilities/initial-variables";
+@forward "sass/utilities/functions";
+@forward "sass/utilities/derived-variables";
+@forward "sass/utilities/controls";
+
+// Bulma Theme
+@forward "sass/themes";
+
+// Base
+@forward "sass/base/minireset";
+@forward "sass/base/generic";
+@forward "sass/base/animations";
+
+// Bulma Elements
+@forward "sass/elements/block";
+@forward "sass/elements/box";
+@forward "sass/elements/button";
+@forward "sass/elements/content";
+@forward "sass/elements/delete";
+@forward "sass/elements/icon";
+@forward "sass/elements/image";
+@forward "sass/elements/loader";
+@forward "sass/elements/notification";
+@forward "sass/elements/progress";
+@forward "sass/elements/table";
+@forward "sass/elements/tag";
+@forward "sass/elements/title";
+
+// Bulma Form
+@forward "sass/form/shared";
+@forward "sass/form/input-textarea";
+@forward "sass/form/checkbox-radio";
+@forward "sass/form/select";
+@forward "sass/form/file";
+@forward "sass/form/tools";
+
+// Bulma Components
+@forward "sass/components/breadcrumb";
+@forward "sass/components/card";
+@forward "sass/components/dropdown";
+@forward "sass/components/menu";
+@forward "sass/components/message";
+@forward "sass/components/modal";
+@forward "sass/components/navbar";
+@forward "sass/components/pagination";
+@forward "sass/components/panel";
+@forward "sass/components/tabs";
+
+// Bulma Grid
+@forward "sass/grid/columns";
+@forward "sass/grid/grid";
+
+// Bulma Layout
+@forward "sass/layout/container";
+@forward "sass/layout/footer";
+@forward "sass/layout/hero";
+@forward "sass/layout/level";
+@forward "sass/layout/media";
+@forward "sass/layout/section";
+
+// Bulma Base Skeleton
+@forward "sass/base/skeleton";
+
+// Bulma Helpers
+@forward "sass/helpers/aspect-ratio";
+@forward "sass/helpers/border";
+@forward "sass/helpers/color";
+@forward "sass/helpers/flexbox";
+@forward "sass/helpers/float";
+@forward "sass/helpers/gap";
+@forward "sass/helpers/overflow";
+@forward "sass/helpers/position";
+@forward "sass/helpers/spacing";
+@forward "sass/helpers/typography";
+@forward "sass/helpers/visibility";
+@forward "sass/helpers/other";
+
+:root {}
+
+@media (prefers-color-scheme: light) {
+  :root {}
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {}
+}
+
+[data-theme=light],
+.theme-light {
+  .navbar {
+    --bulma-navbar-item-img-max-height: 5rem;
+  }
+
+  .control.has-icons-left .input.is-large ~ .icon svg {
+    height: 2rem;
+  }
+
+  .text-is-centered {
+    text-align: center;
+  }
+
+  .text-is-left {
+    text-align: left;
+  }
+
+  .text-is-bold {
+    font-weight: 600;
+  }
+}
+
+[data-theme=dark],
+.theme-dark {
+  /* CSS Variables */
+}

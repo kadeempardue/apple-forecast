@@ -1,0 +1,10 @@
+en:
+  app_name: Apple Forecast
+  nav:
+    home: Home
+    five_day_forecast: 5-Day Forecast
+  hero:
+    search:
+      subtitle: Search for Accurate and Comprehensive Weather Forecasts
+      title: Apple Forecast
+      placeholder: Search City or Zip Code

@@ -8,7 +8,7 @@ Geocoder.configure(
   # http_proxy: nil,                # HTTP proxy server (user:pass@host:port)
   # https_proxy: nil,               # HTTPS proxy server (user:pass@host:port)
   api_key: ENV['GEOAPIFY_API_KEY'], # API key for geocoding service
-  # cache: Redis.new,                 # cache object (must respond to #[], #[]=, and #del)
+  cache: Redis.new,                 # cache object (must respond to #[], #[]=, and #del)
 
   # Exceptions that should not be rescued by default
   # (if you want to implement custom error handling);
@@ -20,8 +20,8 @@ Geocoder.configure(
   # distances: :linear              # :spherical or :linear
 
   # Cache configuration
-  # cache_options: {
-  #   expiration: 30.minutes,
-  #   prefix: 'appleforecast_geocoder:'
-  # }
+  cache_options: {
+    expiration: 30.minutes,
+    prefix: 'appleforecast_geocoder:'
+  }
 )

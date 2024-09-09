@@ -2,6 +2,5 @@
 
 require_relative "af_frontend/engine"
 
-module Frontend
-  # Your code goes here...
+module AfFrontend
 end

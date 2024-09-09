@@ -9,6 +9,12 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
+  redis:
+    container_name: appleforecast_redis
+      # command: redis-server --requirepass password
+    image: "redis:7-alpine"
+    ports:
+      - 6379:6379
 
   adminer:
     container_name: appleforecast_dbadmin

@@ -1,8 +1,9 @@
 require_relative "boot"
 
 require "rails/all"
+require 'dotenv/load'
 
-%w[ af_rest_api af_frontend ].each do |engine|
+%w[ af_rest_api af_frontend af_core ].each do |engine|
   require_relative "../engines/#{engine}/lib/#{engine}"
 end
 
@@ -35,5 +36,24 @@ module AppleForecast
 
     # Middleware
     config.middleware.use Rack::Attack
+
+    # Redis Cache
+    unless Rails.env.test?
+      config.action_controller.perform_caching = true
+      config.action_controller.enable_fragment_cache_logging = true
+      config.cache_store = :redis_cache_store, {
+        namespace: 'appleforecast_redis',
+        host: ENV['REDIS_HOST'],
+        port: ENV['REDIS_PORT'],
+        compress: true,
+        read_timeout: 0.05,
+        write_timeout: 0.05,
+        reconnect_attempts: 1,
+        expires_in: 30.minutes
+      }
+      config.public_file_server.headers = {
+        'Cache-Control' => "public, max-age=#{30.minutes.to_i}"
+      }
+    end
   end
 end

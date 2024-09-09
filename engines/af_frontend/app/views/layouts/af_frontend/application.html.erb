@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Af frontend</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+<html data-theme="light">
+  <head>
+    <title><%= I18n.t('app_name') %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    "af_frontend/application", media: "all" %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+    <%= stylesheet_link_tag "af_frontend/application", media: "all" %>
+    <%= javascript_include_tag "manifest", media: "all" %>
+  </head>
+  <body>
+    <%= render "nav/top" %>
+    <%= yield %>
+    <%= render "nav/footer" %>
+  </body>
 </html>
