@@ -1,0 +1,17 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3.5
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/dartsass.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'engines/af_core/app/services/af_core/cache_manager.rb'

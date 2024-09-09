@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfCore
   class Timeline
     def initialize(data, timeline_type)
@@ -23,19 +25,17 @@ module AfCore
     private
 
     def load(data, timeline_type)
-      singleton_class.instance_eval { attr_accessor :timeline_type }
-      self.timeline_type = timeline_type
+      define_attr_accessor(:timeline_type, timeline_type)
 
       data.each do |key, value|
-        singleton_class.instance_eval { attr_accessor key.underscore }
-        public_send("#{key.underscore}=", value)
-        if key == 'values'
-          value.each do |k, v|
-            singleton_class.instance_eval { attr_accessor k.underscore }
-            public_send("#{k.underscore}=", v)
-          end
-        end
+        define_attr_accessor(key.underscore, value)
+        key == 'values' ? value.each { |k, v| define_attr_accessor(k.underscore, v) } : next
       end
+    end
+
+    def define_attr_accessor(key, value)
+      singleton_class.instance_eval { attr_accessor key }
+      public_send("#{key}=", value)
     end
   end
 end

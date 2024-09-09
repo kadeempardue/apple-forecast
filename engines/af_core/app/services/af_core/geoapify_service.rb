@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfCore
   class GeoapifyService
     IP_SERVICE_URL = 'https://api.geoapify.com/v1'
@@ -11,12 +13,12 @@ module AfCore
     def query(path)
       @results ||= JSON.parse(Net::HTTP.get(URI.parse(api_url(path))).squish)
     rescue StandardError
-      # TODO Bugsnag or similar
+      # TODO: Bugsnag or similar
       nil
     end
 
     def params
-      { apiKey: ENV['GEOAPIFY_API_KEY'] }
+      { apiKey: ENV.fetch('GEOAPIFY_API_KEY', nil) }
     end
 
     def api_url(path)

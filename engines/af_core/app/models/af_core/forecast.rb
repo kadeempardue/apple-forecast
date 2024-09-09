@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module AfCore
   class Forecast < ActiveResourceBase
     attr_accessor :location, :minutely_timelines, :hourly_timelines, :daily_timelines
 
     def self.build(location:, timelines:)
-      instance = self.new
+      instance = new
       instance.build_location(location)
       instance.build_timelines(timelines)
       instance
@@ -20,7 +22,8 @@ module AfCore
     end
 
     def build_timelines_for(timelines, timeline_type:)
-      public_send("#{timeline_type}_timelines=", AfCore::Timeline.build(timelines&.[]('timelines')&.[](timeline_type.to_s) || {}, timeline_type: timeline_type))
+      public_send("#{timeline_type}_timelines=",
+                  AfCore::Timeline.build(timelines&.[]('timelines')&.[](timeline_type.to_s) || {}, timeline_type:))
     end
 
     def now_timeline

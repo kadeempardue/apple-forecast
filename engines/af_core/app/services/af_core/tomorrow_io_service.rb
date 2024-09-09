@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfCore
   class TomorrowIoService
     IP_SERVICE_URL = 'https://api.tomorrow.io/v4'
@@ -13,10 +15,10 @@ module AfCore
 
     def call
       AfCore::CacheManager.cached(cache_name, { klass: :tomorrow_io_service }, CACHE_DURATION, self) do
-        query('/weather/forecast', location: "#{latitude},#{longitude}", units: :imperial )
+        query('/weather/forecast', location: "#{latitude},#{longitude}", units: :imperial)
       end
     rescue StandardError
-      # TODO Bugsnag or similar
+      # TODO: Bugsnag or similar
       nil
     end
 
@@ -27,11 +29,11 @@ module AfCore
     end
 
     def query(path, params)
-      @results ||= JSON.parse(Net::HTTP.get(URI.parse(api_url(path, params))).squish)
+      @query ||= JSON.parse(Net::HTTP.get(URI.parse(api_url(path, params))).squish)
     end
 
     def api_key
-      { apikey: ENV['TOMORROW_API_KEY'] }
+      { apikey: ENV.fetch('TOMORROW_API_KEY', nil) }
     end
 
     def api_url(path, params)
@@ -39,5 +41,3 @@ module AfCore
     end
   end
 end
-
-

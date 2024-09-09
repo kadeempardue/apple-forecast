@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 AfRestApi::Engine.routes.draw do
   namespace :v1 do
     resources :forecasts, only: %i[] do

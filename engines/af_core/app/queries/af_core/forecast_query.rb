@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfCore
   class ForecastQuery
     attr_accessor :cache_hit
@@ -23,12 +25,12 @@ module AfCore
 
     def location_data
       {
-        city: city,
-        state: state,
-        country: country,
-        latitude: latitude,
-        longitude: longitude,
-        postal_code: postal_code,
+        city:,
+        state:,
+        country:,
+        latitude:,
+        longitude:,
+        postal_code:
       }
     end
 

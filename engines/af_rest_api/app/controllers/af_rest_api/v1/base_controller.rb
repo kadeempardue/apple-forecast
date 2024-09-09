@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require "application_responder"
+
+require 'application_responder'
 
 module AfRestApi
   module V1

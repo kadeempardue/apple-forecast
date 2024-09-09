@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module AfRestApi
   module V1
     module Core
@@ -10,10 +11,6 @@ module AfRestApi
             format.html { render 'af_frontend/errors/index', status: @error_number }
             format.js { render json: { errors: [@error_name] }, status: @error_number }
           end
-        end
-
-        def not_found
-          render status: :not_found, plain: '404 Not Found'
         end
       end
     end

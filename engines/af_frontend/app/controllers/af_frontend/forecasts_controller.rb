@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfFrontend
   class ForecastsController < ActionController::Base
     prepend_view_path AfFrontend::Engine.root.join('app/views/af_frontend')
@@ -8,9 +10,7 @@ module AfFrontend
       @forecast = forecast_query.perform
       @current_timeline = @forecast.now_timeline
       @cache_hit = forecast_query.cache_hit
-      respond_to do |format|
-        format.html
-      end
+      respond_to(&:html)
     end
 
     private

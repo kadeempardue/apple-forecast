@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfCore
   class Location
     attr_accessor :city, :state, :country, :latitude, :longitude

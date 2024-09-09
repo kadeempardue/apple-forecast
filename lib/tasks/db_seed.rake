@@ -2,7 +2,7 @@
 
 namespace :db do
   namespace :seed do
-    desc "Drops, recreates, and reseeds database"
+    desc 'Drops, recreates, and reseeds database'
     task :danger do
       abort 'Cannot use this task in production!' if Rails.env.production?
 

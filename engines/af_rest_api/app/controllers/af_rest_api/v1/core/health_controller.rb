@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module AfRestApi
   module V1
     module Core
       class HealthController < ActionController::Base
-
         def index
           render json: { meta: data }
         end
@@ -13,7 +14,7 @@ module AfRestApi
           {
             health: :ok,
             component_name: 'api',
-            component_version: component_version,
+            component_version:,
             app_version: AppleForecast::Application::VERSION
           }
         end

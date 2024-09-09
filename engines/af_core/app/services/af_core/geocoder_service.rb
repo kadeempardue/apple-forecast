@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AfCore
   class GeocoderService
     attr_accessor :cache_hit
@@ -11,7 +13,7 @@ module AfCore
     end
 
     def call
-      get_postal_code
+      search_postal_code
     end
 
     private
@@ -22,7 +24,7 @@ module AfCore
 
     # Rails.cache.fetch("cache-manager/#{latitude}:#{longitude}/#{digest}")
     # Cache duration is one month since postal codes rarely change.
-    def get_postal_code
+    def search_postal_code
       AfCore::CacheManager.cached(cache_name, { klass: :geocoder_service }, CACHE_DURATION, self) do
         Geocoder.search([latitude, longitude]).first.postal_code
       end
