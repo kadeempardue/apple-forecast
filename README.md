@@ -1,5 +1,7 @@
 # Apple Forecast
 
+![Demo](public/demo.png)
+
 Apple Forecast is an application that accepts an address (or series of addresses) and generates the forecast from reputable weather sources.
 
 ## Installation
