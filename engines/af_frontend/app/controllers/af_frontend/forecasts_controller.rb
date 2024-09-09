@@ -6,15 +6,10 @@ module AfFrontend
 
     def index
       @forecast = forecast_query.perform
+      @current_timeline = @forecast.now_timeline
+      @cache_hit = forecast_query.cache_hit
       respond_to do |format|
         format.html
-      end
-    end
-
-    def search
-      # @forecast = forecast_query.perform
-      respond_to do |format|
-        format.js
       end
     end
 

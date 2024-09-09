@@ -1,0 +1,24 @@
+<% self.class.public_send(:include, AfFrontend::ApplicationHelper) %>
+
+$("#main_block").html("<%= escape_javascript(
+  render 'af_frontend/forecasts/block',
+      {
+        location: @forecast.location,
+        time: @forecast.current_time,
+        weather_icon: @current_timeline,
+        temperature: @current_timeline.temperature_apparent.to_i,
+        precipitation: @current_timeline.precipitation_probability,
+        humidity: @current_timeline.humidity,
+        wind_speed: @current_timeline.wind_speed,
+        uv_index: @current_timeline.uv_index,
+        orientation: :horizontal
+      }
+) %>");
+
+$("#block_list").html("<%= escape_javascript(render partial: 'af_frontend/forecasts/list', collection: @forecast.daily_timelines, as: :timeline) %>");
+
+<% if @cache_hit %>
+  $("#cache_hit").html("<%= escape_javascript(render 'af_frontend/nav/cache_hit') %>");
+<% else %>
+  $("#cache_hit").html("");
+<% end %>

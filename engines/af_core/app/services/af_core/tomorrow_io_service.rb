@@ -1,7 +1,10 @@
 module AfCore
   class TomorrowIoService
     IP_SERVICE_URL = 'https://api.tomorrow.io/v4'
+    attr_accessor :cache_hit
     attr_reader :latitude, :longitude
+
+    CACHE_DURATION = 30.minutes
 
     def initialize(latitude, longitude)
       @latitude = latitude
@@ -9,13 +12,19 @@ module AfCore
     end
 
     def call
-      query('/weather/forecast', location: "#{latitude},#{longitude}" )
+      AfCore::CacheManager.cached(cache_name, { klass: :tomorrow_io_service }, CACHE_DURATION, self) do
+        query('/weather/forecast', location: "#{latitude},#{longitude}", units: :imperial )
+      end
     rescue StandardError
       # TODO Bugsnag or similar
       nil
     end
 
     private
+
+    def cache_name
+      "#{latitude}:#{longitude}"
+    end
 
     def query(path, params)
       @results ||= JSON.parse(Net::HTTP.get(URI.parse(api_url(path, params))).squish)

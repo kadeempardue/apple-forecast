@@ -1,8 +1,30 @@
 module AfCore
   class Timeline
     def initialize(data, timeline_type)
-      singleton_class.instance_eval { attr_accessor timeline_type }
-      public_send("#{timeline_type}=", timeline_type)
+      load(data, timeline_type)
+    end
+
+    def daily?
+      timeline_type == :daily
+    end
+
+    def hourly?
+      timeline_type == :hourly
+    end
+
+    def minutely?
+      timeline_type == :minutely
+    end
+
+    def self.build(data, timeline_type:)
+      data.map { |data_set| new(data_set, timeline_type) }
+    end
+
+    private
+
+    def load(data, timeline_type)
+      singleton_class.instance_eval { attr_accessor :timeline_type }
+      self.timeline_type = timeline_type
 
       data.each do |key, value|
         singleton_class.instance_eval { attr_accessor key.underscore }
@@ -13,12 +35,6 @@ module AfCore
             public_send("#{k.underscore}=", v)
           end
         end
-      end
-    end
-
-    def self.build_from_data(data, timeline_type:)
-      data.map do |data_set|
-        new(data_set, timeline_type)
       end
     end
   end

@@ -1,0 +1,15 @@
+<div class="cell">
+  <%= render 'af_frontend/forecasts/block',
+      {
+        location: nil,
+        day: DateTime.parse(timeline.time),
+        weather_icon: timeline,
+        temperature: timeline.temperature_apparent_avg.to_i,
+        precipitation: timeline.precipitation_probability_avg,
+        humidity: timeline.humidity_avg,
+        wind_speed: timeline.wind_speed_avg,
+        uv_index: nil,
+        orientation: :vertical
+      }
+  %>
+</div>

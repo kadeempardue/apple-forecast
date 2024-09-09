@@ -1,0 +1,8 @@
+<section class="section">
+  <div class="container text-is-centered">
+    <p class="title is-3"><%= I18n.t('outlook.title') %></p>
+    <div id="block_list" class="grid">
+      <%= render partial: 'af_frontend/forecasts/list', collection: @forecast.daily_timelines, as: :timeline %>
+     </div>
+  </div>
+</section>

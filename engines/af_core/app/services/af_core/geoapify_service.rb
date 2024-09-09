@@ -4,15 +4,15 @@ module AfCore
 
     def ip_info
       query('ipinfo')
-    rescue StandardError
-      # TODO Bugsnag or similar
-      nil
     end
 
     private
 
     def query(path)
       @results ||= JSON.parse(Net::HTTP.get(URI.parse(api_url(path))).squish)
+    rescue StandardError
+      # TODO Bugsnag or similar
+      nil
     end
 
     def params
