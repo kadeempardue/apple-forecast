@@ -15,3 +15,15 @@ Layout/LineLength:
 Metrics/AbcSize:
   Exclude:
     - 'engines/af_core/app/services/af_core/cache_manager.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'engines/**/*_spec.rb'
+
+Style/OpenStructUse:
+  Exclude:
+    - 'engines/**/*_spec.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'engines/af_core/app/models/af_core/timeline.rb'

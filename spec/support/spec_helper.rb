@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module SpecHelper
   extend self
@@ -7,7 +7,7 @@ module SpecHelper
   def load_support_files(*engines)
     each_engine(engines) do |engine_root_path|
       support_files_path = engine_root_path.join('spec/support/**/*.rb')
-      Dir[support_files_path].each {|f| require f }
+      Dir[support_files_path].each { |f| require f }
     end
   end
 

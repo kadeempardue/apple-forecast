@@ -3,13 +3,12 @@
 module AfFrontend
   module ApplicationHelper
     def friendly_location(location)
-      str = ''
-      str += location.city.to_s if location.city
-      str += ", " if location.city if location && location.state
-      str += location.state.to_s if location.state
-      str += " " if (location.city || location.state) && location.country
-      str += location.country.to_s if location.country
-      str
+      address = []
+      address.push([location.city, location.state].compact)
+      address[0].insert(1, ', ') if location.city && location.state
+      address[0] = address[0].join.presence
+      address.push(location.country)
+      address.compact.join(' ')
     end
 
     def friendly_day(date)

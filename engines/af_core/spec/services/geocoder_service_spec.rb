@@ -1,4 +1,6 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe AfCore::GeocoderService do
   let(:latitude) { 42.3478 }
@@ -14,7 +16,7 @@ RSpec.describe AfCore::GeocoderService do
 
   context '#call' do
     it 'should call using cache' do
-      expect(Geocoder).to receive(:search).once.and_return([OpenStruct.new(postal_code: 30168)])
+      expect(Geocoder).to receive(:search).once.and_return([OpenStruct.new(postal_code: 30_168)])
       expect(AfCore::CacheManager).to receive(:cached).once.and_call_original
       expect(subject).to receive(:search_postal_code).and_call_original
       subject.call

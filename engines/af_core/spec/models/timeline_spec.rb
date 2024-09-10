@@ -1,9 +1,11 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe AfCore::Timeline, type: :model do
   let(:subject) { build(:timeline) }
   let(:daily_attributes) do
-    %w(
+    %w[
       cloud_base_avg cloud_base_max cloud_base_min cloud_ceiling_avg cloud_ceiling_max cloud_ceiling_min
       cloud_cover_avg cloud_cover_max cloud_cover_min dew_point_avg dew_point_max dew_point_min
       evapotranspiration_avg evapotranspiration_max evapotranspiration_min evapotranspiration_sum
@@ -26,7 +28,7 @@ RSpec.describe AfCore::Timeline, type: :model do
       uv_index_avg uv_index_max uv_index_min visibility_avg visibility_max visibility_min
       weather_code_max weather_code_min wind_direction_avg wind_gust_avg wind_gust_max wind_gust_min
       wind_speed_avg wind_speed_max wind_speed_min
-    )
+    ]
   end
 
   describe '#daily?' do

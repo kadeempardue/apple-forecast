@@ -50,9 +50,7 @@ group :development do
 end
 
 group :test do
-  gem 'email_spec'
   gem 'factory_bot_rails'
-  gem 'i18n-spec'
   gem 'rails-controller-testing'
   gem 'rspec-expectations'
   gem 'rspec-its'

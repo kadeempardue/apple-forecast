@@ -1,18 +1,14 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe AfCore::ForecastQuery do
-  let(:location_data) { file_fixture("ipinfo1.json") }
-  let(:timeline_data) { file_fixture("timeline1.json") }
-  let!(:stub_forecast) do
-    stub_request(:get,
-      'https://api.geoapify.com/v1/ipinfo?apiKey='
-    ).to_return(status: 200, body: location_data, headers: {})
-  end
-  let!(:stub_forecast2) do
-    stub_request(:get,
-      'https://api.tomorrow.io/v4/weather/forecast?apikey=&location=33.8266,-84.6007&units=imperial'
-    ).to_return(status: 200, body: timeline_data, headers: {})
-  end
+  let(:location_data) { file_fixture('ipinfo1.json') }
+  let(:timeline_data) { file_fixture('timeline1.json') }
+  let(:stub_url1) { 'https://api.geoapify.com/v1/ipinfo?apiKey=' }
+  let!(:stub_forecast) { stub_request(:get, stub_url1).to_return(status: 200, body: location_data, headers: {}) }
+  let(:stub_url2) { 'https://api.tomorrow.io/v4/weather/forecast?apikey=&location=33.8266,-84.6007&units=imperial' }
+  let!(:stub_forecast2) { stub_request(:get, stub_url2).to_return(status: 200, body: timeline_data, headers: {}) }
 
   before do
     allow_any_instance_of(AfCore::GeocoderService).to receive(:call).and_return('30168')

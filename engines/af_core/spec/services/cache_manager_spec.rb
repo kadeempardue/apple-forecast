@@ -1,4 +1,6 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe AfCore::CacheManager do
   let(:cache) { Rails.cache }
@@ -18,7 +20,7 @@ RSpec.describe AfCore::CacheManager do
       expect(cache).to receive(:fetch).twice
       expect(cache).to receive(:write).once
       expect(cache.redis).not_to receive(:ttl)
-      subject.cached(path, params, described_class::CACHE_DURATION, klass) {}
+      subject.cached(path, params, described_class::CACHE_DURATION, klass) { '1' }
     end
 
     it 'should yield' do
@@ -42,7 +44,7 @@ RSpec.describe AfCore::CacheManager do
   end
 
   context '#delete' do
-    let(:cache_key) { subject.public_send(:cache_key, path, params) }
+    let(:cache_key) { subject.cache_key(path, params) }
 
     it 'deletes from the cache' do
       expect(Rails.cache.fetch(cache_key)).to eq(nil)

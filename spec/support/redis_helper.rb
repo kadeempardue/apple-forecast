@@ -1,15 +1,7 @@
-=begin
-  Include in your rspec config like so:
-  RSpec.configure do |spec|
-    spec.include RSpec::RedisHelper, redis: true
-  end
-  This helper will clean redis around each example.
-=end
+# frozen_string_literal: true
+
 module RSpec
   module RedisHelper
-
-    # When this module is included into the rspec config,
-    # it will set up an around(:each) block to clear redis.
     def self.included(rspec)
       rspec.around(:each, redis: true) do |example|
         with_clean_redis do
@@ -18,20 +10,19 @@ module RSpec
       end
     end
 
-    CONFIG = { url: ENV["REDIS_URL"] || "redis://127.0.0.1:6379/1" }
+    CONFIG = { url: ENV['REDIS_URL'] || 'redis://127.0.0.1:6379/1' }.freeze
 
-    def redis(&block)
+    def redis
       @redis ||= ::Redis.connect(CONFIG)
     end
 
-    def with_clean_redis(&block)
-      redis.flushall            # clean before run
+    def with_clean_redis
+      redis.flushall
       begin
         yield
       ensure
-        redis.flushall          # clean up after run
+        redis.flushall
       end
     end
-
-  end # RedisHelper
-end # RSpec
+  end
+end
