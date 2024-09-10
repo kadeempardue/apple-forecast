@@ -10,7 +10,6 @@ module AfFrontend
       @forecast = forecast_query.perform
       @current_timeline = @forecast.now_timeline
       @cache_hit = forecast_query.cache_hit
-      respond_to(&:html)
     end
 
     private

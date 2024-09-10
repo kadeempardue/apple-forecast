@@ -2,7 +2,7 @@
 
 ![Demo](public/demo.png)
 
-Apple Forecast is an application that accepts an address (or series of addresses) and generates the forecast from reputable weather sources.
+Apple Forecast is an application that accepts an address and generates the weather forecast.
 
 ## Installation
 
@@ -75,6 +75,13 @@ Server: `postgres`
 Username: `postgres`
 Password: `postgres`
 Database: `appleforecast_development` or `appleforecast_test`
+
+## Notes
+
+Caching is supported. We cache forecasts for 30 minutes.
+An indicator will pop up next to the logo showing that a cache has been hit.
+
+We are limited to 25 new forecasts per hour (300 per day).
 
 ## Contributing
 

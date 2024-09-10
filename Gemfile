@@ -27,9 +27,11 @@ gem 'base64'
 gem 'drb'
 gem 'fiddle'
 gem 'mutex_m'
+gem 'ostruct'
 
 group :development, :test do
   gem 'bootsnap'
+  gem 'bullet'
   gem 'faker'
   gem 'letter_opener'
   gem 'pry'
@@ -44,7 +46,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman', require: false
-  gem 'bullet'
   gem 'listen'
 end
 

@@ -2,11 +2,37 @@
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require 'rspec/its'
+require 'factory_bot_rails'
+require 'factory_bot'
+require 'timecop'
+require 'webmock/rspec'
+require 'pry'
+
+require_relative 'support/spec_helper'
+require_relative '../engines/af_core/spec/spec_helper'
+require_relative '../engines/af_frontend/spec/spec_helper'
+require_relative '../engines/af_rest_api/spec/spec_helper'
+require_relative 'support/redis_helper'
+
+SpecHelper.load_support_files(:af_core)
+SpecHelper.load_factories(:af_core)
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
+WebMock.disable_net_connect!
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -32,6 +58,22 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+  config.include RSpec::RedisHelper, redis: true
+  # config.include ControllerHelper
+
+  config.order = 'random'
+
+  config.before(:each) do
+    Rails.cache.clear
+  end
+
+  config.after(:each) do
+    Timecop.return
+  end
+
+  config.filter_run_when_matching focus: true
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
 

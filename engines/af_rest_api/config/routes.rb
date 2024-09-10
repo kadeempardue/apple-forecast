@@ -9,7 +9,7 @@ AfRestApi::Engine.routes.draw do
     end
   end
 
-  match '*not_found', to: 'v1/core/errors#not_found', via: %i[get post put patch]
+  match 'not_found', to: 'v1/core/errors#not_found', via: %i[get post put patch], as: :not_found
 
   root to: 'v1/core/health#index'
 end

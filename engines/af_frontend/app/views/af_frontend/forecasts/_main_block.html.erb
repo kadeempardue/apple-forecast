@@ -4,11 +4,11 @@
         location: @forecast.location,
         time: @forecast.current_time,
         weather_icon: @current_timeline,
-        temperature: @current_timeline.temperature_apparent.to_i,
-        precipitation: @current_timeline.precipitation_probability,
-        humidity: @current_timeline.humidity,
-        wind_speed: @current_timeline.wind_speed,
-        uv_index: @current_timeline.uv_index,
+        temperature: @current_timeline&.temperature_apparent&.to_i,
+        precipitation: @current_timeline&.precipitation_probability,
+        humidity: @current_timeline&.humidity,
+        wind_speed: @current_timeline&.wind_speed,
+        uv_index: @current_timeline&.uv_index,
         orientation: :horizontal
       }
   %>

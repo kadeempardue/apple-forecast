@@ -4,8 +4,10 @@ module AfFrontend
   module ApplicationHelper
     def friendly_location(location)
       str = ''
-      str += "#{location.city}, " if location.city
-      str += "#{location.state} " if location.state
+      str += location.city.to_s if location.city
+      str += ", " if location.city if location && location.state
+      str += location.state.to_s if location.state
+      str += " " if (location.city || location.state) && location.country
       str += location.country.to_s if location.country
       str
     end
@@ -28,6 +30,7 @@ module AfFrontend
       image_tag "af_frontend/#{file_name}", style: 'margin-top: -1.5em'
     end
 
+    # TODO: Move to FileManagerService or similar
     def get_files_by_pattern(dir, pattern)
       Dir.glob(File.join(dir, '/*.png')).select do |f|
         f.split('/')[-1][/^#{pattern}.*@2x\.png$/]

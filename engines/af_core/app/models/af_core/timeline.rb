@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AfCore
-  class Timeline
+  class Timeline < ActiveResourceBase
     def initialize(data, timeline_type)
       load(data, timeline_type)
     end

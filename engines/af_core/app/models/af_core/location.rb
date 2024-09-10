@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AfCore
-  class Location
+  class Location < ActiveResourceBase
     attr_accessor :city, :state, :country, :latitude, :longitude
 
     def self.build(data)

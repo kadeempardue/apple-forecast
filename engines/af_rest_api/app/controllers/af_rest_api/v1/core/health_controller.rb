@@ -3,7 +3,7 @@
 module AfRestApi
   module V1
     module Core
-      class HealthController < ActionController::Base
+      class HealthController < AfRestApi::V1::BaseController
         def index
           render json: { meta: data }
         end
