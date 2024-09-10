@@ -76,6 +76,19 @@ Username: `postgres`
 Password: `postgres`
 Database: `appleforecast_development` or `appleforecast_test`
 
+# Running Tests
+
+This command will run all specs across all engines. It will also generate a test coverage report
+
+```bash
+rspec spec/
+open coverage/index.html
+```
+
+Test Coverage is over 97% percent.
+
+![Test Coverage](public/test-coverage.png)
+
 ## Notes
 
 Caching is supported. We cache forecasts for 30 minutes.
